@@ -19,6 +19,24 @@ import {
     InstructionFromJSONTyped,
     InstructionToJSON,
 } from './Instruction';
+import type { SwapInstructionsResponseBlockhashWithMetadata } from './SwapInstructionsResponseBlockhashWithMetadata';
+import {
+    SwapInstructionsResponseBlockhashWithMetadataFromJSON,
+    SwapInstructionsResponseBlockhashWithMetadataFromJSONTyped,
+    SwapInstructionsResponseBlockhashWithMetadataToJSON,
+} from './SwapInstructionsResponseBlockhashWithMetadata';
+import type { SwapInstructionsResponsePrioritizationType } from './SwapInstructionsResponsePrioritizationType';
+import {
+    SwapInstructionsResponsePrioritizationTypeFromJSON,
+    SwapInstructionsResponsePrioritizationTypeFromJSONTyped,
+    SwapInstructionsResponsePrioritizationTypeToJSON,
+} from './SwapInstructionsResponsePrioritizationType';
+import type { SwapInstructionsResponseSimulationError } from './SwapInstructionsResponseSimulationError';
+import {
+    SwapInstructionsResponseSimulationErrorFromJSON,
+    SwapInstructionsResponseSimulationErrorFromJSONTyped,
+    SwapInstructionsResponseSimulationErrorToJSON,
+} from './SwapInstructionsResponseSimulationError';
 
 /**
  * 
@@ -66,6 +84,57 @@ export interface SwapInstructionsResponse {
      * @memberof SwapInstructionsResponse
      */
     addressLookupTableAddresses: Array<string>;
+    /**
+     * 
+     * @type {number}
+     * @memberof SwapInstructionsResponse
+     */
+    prioritizationFeeLamports?: number;
+    /**
+     * 
+     * @type {number}
+     * @memberof SwapInstructionsResponse
+     */
+    computeUnitLimit?: number;
+    /**
+     * 
+     * @type {SwapInstructionsResponsePrioritizationType}
+     * @memberof SwapInstructionsResponse
+     */
+    prioritizationType?: SwapInstructionsResponsePrioritizationType;
+    /**
+     * - The slot number when the simulation was performed.
+     * 
+     * @type {number}
+     * @memberof SwapInstructionsResponse
+     */
+    simulationSlot?: number;
+    /**
+     * - Dynamic slippage report if enabled.
+     * 
+     * @type {object}
+     * @memberof SwapInstructionsResponse
+     */
+    dynamicSlippageReport?: object | null;
+    /**
+     * 
+     * @type {SwapInstructionsResponseSimulationError}
+     * @memberof SwapInstructionsResponse
+     */
+    simulationError?: SwapInstructionsResponseSimulationError | null;
+    /**
+     * - Addresses organized by lookup table address.
+     * 
+     * @type {object}
+     * @memberof SwapInstructionsResponse
+     */
+    addressesByLookupTableAddress?: object | null;
+    /**
+     * 
+     * @type {SwapInstructionsResponseBlockhashWithMetadata}
+     * @memberof SwapInstructionsResponse
+     */
+    blockhashWithMetadata?: SwapInstructionsResponseBlockhashWithMetadata | null;
 }
 
 /**
@@ -97,6 +166,14 @@ export function SwapInstructionsResponseFromJSONTyped(json: any, ignoreDiscrimin
         'swapInstruction': InstructionFromJSON(json['swapInstruction']),
         'cleanupInstruction': !exists(json, 'cleanupInstruction') ? undefined : InstructionFromJSON(json['cleanupInstruction']),
         'addressLookupTableAddresses': json['addressLookupTableAddresses'],
+        'prioritizationFeeLamports': !exists(json, 'prioritizationFeeLamports') ? undefined : json['prioritizationFeeLamports'],
+        'computeUnitLimit': !exists(json, 'computeUnitLimit') ? undefined : json['computeUnitLimit'],
+        'prioritizationType': !exists(json, 'prioritizationType') ? undefined : SwapInstructionsResponsePrioritizationTypeFromJSON(json['prioritizationType']),
+        'simulationSlot': !exists(json, 'simulationSlot') ? undefined : json['simulationSlot'],
+        'dynamicSlippageReport': !exists(json, 'dynamicSlippageReport') ? undefined : json['dynamicSlippageReport'],
+        'simulationError': !exists(json, 'simulationError') ? undefined : SwapInstructionsResponseSimulationErrorFromJSON(json['simulationError']),
+        'addressesByLookupTableAddress': !exists(json, 'addressesByLookupTableAddress') ? undefined : json['addressesByLookupTableAddress'],
+        'blockhashWithMetadata': !exists(json, 'blockhashWithMetadata') ? undefined : SwapInstructionsResponseBlockhashWithMetadataFromJSON(json['blockhashWithMetadata']),
     };
 }
 
@@ -115,6 +192,14 @@ export function SwapInstructionsResponseToJSON(value?: SwapInstructionsResponse 
         'swapInstruction': InstructionToJSON(value.swapInstruction),
         'cleanupInstruction': InstructionToJSON(value.cleanupInstruction),
         'addressLookupTableAddresses': value.addressLookupTableAddresses,
+        'prioritizationFeeLamports': value.prioritizationFeeLamports,
+        'computeUnitLimit': value.computeUnitLimit,
+        'prioritizationType': SwapInstructionsResponsePrioritizationTypeToJSON(value.prioritizationType),
+        'simulationSlot': value.simulationSlot,
+        'dynamicSlippageReport': value.dynamicSlippageReport,
+        'simulationError': SwapInstructionsResponseSimulationErrorToJSON(value.simulationError),
+        'addressesByLookupTableAddress': value.addressesByLookupTableAddress,
+        'blockhashWithMetadata': SwapInstructionsResponseBlockhashWithMetadataToJSON(value.blockhashWithMetadata),
     };
 }
 

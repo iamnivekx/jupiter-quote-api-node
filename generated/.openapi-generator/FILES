@@ -9,6 +9,11 @@ models/QuoteResponse.ts
 models/RoutePlanStep.ts
 models/SwapInfo.ts
 models/SwapInstructionsResponse.ts
+models/SwapInstructionsResponseBlockhashWithMetadata.ts
+models/SwapInstructionsResponseBlockhashWithMetadataFetchedAt.ts
+models/SwapInstructionsResponsePrioritizationType.ts
+models/SwapInstructionsResponsePrioritizationTypeComputeBudget.ts
+models/SwapInstructionsResponseSimulationError.ts
 models/SwapMode.ts
 models/SwapRequest.ts
 models/SwapRequestPrioritizationFeeLamports.ts

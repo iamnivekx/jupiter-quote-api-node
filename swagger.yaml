@@ -428,6 +428,87 @@ components:
           type: array
           items:
             type: string
+        prioritizationFeeLamports:
+          type: integer
+          format: uint64
+        computeUnitLimit:
+          type: integer
+          format: uint64
+        prioritizationType:
+          description: |
+            - Information about the prioritization fee type and amounts.
+          type: object
+          properties:
+            computeBudget:
+              type: object
+              properties:
+                microLamports:
+                  type: integer
+                  format: uint64
+                estimatedMicroLamports:
+                  type: integer
+                  format: uint64
+              required:
+                - microLamports
+                - estimatedMicroLamports
+        simulationSlot:
+          description: |
+            - The slot number when the simulation was performed.
+          type: integer
+          format: uint64
+        dynamicSlippageReport:
+          description: |
+            - Dynamic slippage report if enabled.
+          nullable: true
+          type: object
+        simulationError:
+          description: |
+            - Error information if simulation failed.
+          nullable: true
+          type: object
+          properties:
+            errorCode:
+              type: string
+            error:
+              type: string
+          required:
+            - errorCode
+            - error
+        addressesByLookupTableAddress:
+          description: |
+            - Addresses organized by lookup table address.
+          nullable: true
+          type: object
+        blockhashWithMetadata:
+          description: |
+            - Blockhash information with metadata.
+          type: object
+          nullable: true
+          properties:
+            blockhash:
+              type: array
+              items:
+                type: integer
+                format: uint8
+            lastValidBlockHeight:
+              type: integer
+              format: uint64
+            fetchedAt:
+              type: object
+              properties:
+                secs_since_epoch:
+                  type: integer
+                  format: uint64
+                nanos_since_epoch:
+                  type: integer
+                  format: uint32
+              required:
+                - secs_since_epoch
+                - nanos_since_epoch
+          required:
+            - blockhash
+            - lastValidBlockHeight
+            - fetchedAt
       required:
         - computeBudgetInstructions
         - setupInstructions
